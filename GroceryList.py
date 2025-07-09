@@ -5,34 +5,36 @@ class GroceryList:
     self.items = {}
 
   def addItem(self, name, quantity, category):
-    print("TODO: addItem")
-    # if name in self.items:
-      # increase the quantity 
-    # else :
-      # add a new item to the list 
+    if name in self.items:
+      self.items[name]["quantity"] += (quantity) # BROKEN, DOES NOT ADD INTEGERS
+    else :
+      self.items[name] = {
+        "quantity": quantity,
+        "category": category,
+      }
+    print(name + " added")
 
   def removeItem(self, name):
-    print("TODO: removeItem")
-    # if name in self.items:
-      # delete the item
-      # let user know
+    if name in self.items:
+      del self.items[name]
+      print(name + " removed")
 
   def displayList(self):
-    print("TODO: displayList")
-    # only way to test this function is to look at its output
-    
-    # if not self.items:
-      # tell user the list is empty
-    # else:
-      # use a for loop to print each item and its details
+    if not self.items:
+      print("Your grocery list is empty!")
+    else:
+      print("\nYour grocery list:")
+      for name, details in self.items.items():
+        category = details.get("category")
+        quantity = details.get("quantity")
+        print(name + "(" + category + ")" + ": " + str(quantity))
 
   def findItem(self, name):
-    print("TODO: findItem")
-    # for this function we will use return function
-    # so that we can test it 
-
-    # if name in self.item:
-      # get all the details of that item
-    # else:
-      # not found
-    
+    if name in self.items:
+      print("Found!")
+      details = self.items[name]
+      category = details.get("category")
+      quantity = details.get("quantity")
+      print(name + "(" + category + ")" + ": " + str(quantity))
+    else:
+      return name + "not found"
