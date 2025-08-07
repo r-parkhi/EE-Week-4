@@ -17,21 +17,21 @@ def main():
   while True:
     # Ask for an action
     action = input(GREEN +
-      "\nActions: add, remove, display, find, quit.\n" \
+      "\nActions: add, remove, display, find, save, quit.\n" \
       "What would you like to do? Type help for more details. " + RESET)
     
     # Add item - ask for item details
     if action == "add":
-      print(CYAN + "\nPlease enter info about the item you'd like to add." + RESET)
-      name = input("\tName: ").lower()
+      print(CYAN + "\nWhat item would you like to add?" + RESET)
+      name = input("\tItem name: ").lower()
       quantity = input("\tQuantity: ")
       category = input("\tCategory: ")
       grocery.addItem(name, quantity, category)
 
     # Remove item - ask for item name
     elif action == "remove":
-      print(CYAN + "\nPlease enter the item you'd like to remove." + RESET)
-      name = input("\tName: ").lower()
+      print(CYAN + "\nWhat item would you like to remove?" + RESET)
+      name = input("\tItem name: ").lower()
       grocery.removeItem(name)
 
     # Display list
@@ -40,15 +40,21 @@ def main():
 
     # Find item - ask for item name
     elif action == "find":
-      print(CYAN + "\nPlease enter the item you'd like to find." + RESET)
-      name = input("\tName: ").lower()
+      print(CYAN + "\nWhat item would you like to find?" + RESET)
+      name = input("\tItem name: ").lower()
       grocery.findItem(name)
 
-    # Break loop
+    # Save list - ask for file name
+    elif action == "save":
+      print(CYAN + "\nWhat would you like to name the file?" + RESET)
+      file_name = input("\tFile name: ").lower()
+      grocery.saveList(file_name)
+    
+    # Quit program loop
     elif action == "quit":
       print(RED + "\nQuitting..." + RESET)
       break
-    
+
     # Print help menu
     elif action == "help":
       print(BLUE +
@@ -56,6 +62,7 @@ def main():
         "Remove - remove an item from your list\n" \
         "Display - display your list\n" \
         "Find - find an item in your list\n" \
+        "Save - save your list to a JSON file\n" \
         "Quit - quit the program"
       + RESET)
 

@@ -1,4 +1,5 @@
 # grocery_list.py
+import json
 
 class GroceryList:
   def __init__(self):
@@ -14,7 +15,6 @@ class GroceryList:
     # create new key value pairs & print item name
     else:
       self.items[name] = {
-        # "quantity": int(quantity),
         "quantity": quantity,
         "category": category,
       }
@@ -61,3 +61,18 @@ class GroceryList:
     # print "not found"
     else:
       print(f"\n'{name}' was not found in your list!")
+
+
+  # Save list to file
+  def saveList(self, file_name):
+    # write file
+    if self.items:
+      file_name = file_name + ".json"
+      with open(file_name, "w") as file:
+        json.dump(self.items, file, indent=4)
+
+      print(f"\nSaved to '{file_name}'!")
+
+    # print "empty"
+    else:
+      print("\nYour list is empty! Add an item to it first.")
